@@ -1,30 +1,20 @@
 package com.automationpractice;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-//import org.junit.AfterClass;
-//import org.junit.Before;
-//import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 
 public class BaseTestCase {
 
-    private static WebDriver driver;
-
-    public static WebDriver getDriver() {
-        return driver;
-    }
+    protected WebDriver driver;
 
     @BeforeClass
-    public static void setupClass() {
+    public void setupClass() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
-    //@Before  // Junit
     @BeforeMethod
     public void setupTest() {
         driver.manage().window().maximize();
@@ -32,7 +22,7 @@ public class BaseTestCase {
     }
 
     @AfterClass
-    public static void teardown() {
+    public void teardown() {
         if (driver != null) {
             driver.close();
             driver.quit();

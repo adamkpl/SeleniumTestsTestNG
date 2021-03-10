@@ -7,9 +7,6 @@ import com.automationpractice.pageObjects.utils.TakeScreenshotWrapper;
 import com.automationpractice.pageObjects.utils.Url;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-//import org.junit.Test;
-
-//import static org.junit.Assert.assertEquals;
 
 /**
  * Create an account
@@ -20,12 +17,12 @@ import org.testng.annotations.Test;
 
 public class CreateAccountTest extends BaseTestCase {
 
-    MainPage mainPage = new MainPage(getDriver());
-    AccountSignInPage accountSignInPage = new AccountSignInPage(getDriver());
-    MyAccount myAccount = new MyAccount(getDriver());
-
     @Test
     public void shouldRegisterAccountWithRequiredFieldsFilledOnlyWithValidInputData() {
+        MainPage mainPage = new MainPage(driver);
+        AccountSignInPage accountSignInPage = new AccountSignInPage(driver);
+        MyAccount myAccount = new MyAccount(driver);
+
         // Given
         mainPage
                 .navigateToMainPage()
@@ -53,13 +50,16 @@ public class CreateAccountTest extends BaseTestCase {
         myAccount
                 .getWelcomeMessage();
                 takeScreenshotMinimum();
-                //assertEquals("URL = myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
-                AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
+                AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
 
     }
 
     @Test
     public void shouldRegisterAccountWithAllFieldsFilledWithValidInputData() {
+        MainPage mainPage = new MainPage(driver);
+        AccountSignInPage accountSignInPage = new AccountSignInPage(driver);
+        MyAccount myAccount = new MyAccount(driver);
+
         // Given
         mainPage
                 .navigateToMainPage()
@@ -96,17 +96,16 @@ public class CreateAccountTest extends BaseTestCase {
         myAccount
                 .getWelcomeMessage();
                 takeScreenshotMaximum();
-                //assertEquals("URL = myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
-                AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
+                AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
 
     }
 
     private void takeScreenshotMinimum() {
-        TakeScreenshotWrapper.takeScreenshot(getDriver(),"RegisterAccountMinimum_Success.png");
+        TakeScreenshotWrapper.takeScreenshot(driver,"RegisterAccountMinimum_Success.png");
     }
 
     private void takeScreenshotMaximum() {
-        TakeScreenshotWrapper.takeScreenshot(getDriver(),"RegisterAccountMaximum_Success.png");
+        TakeScreenshotWrapper.takeScreenshot(driver,"RegisterAccountMaximum_Success.png");
     }
 
 }

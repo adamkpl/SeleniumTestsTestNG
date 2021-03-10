@@ -6,12 +6,8 @@ import com.automationpractice.pageObjects.pages.MyAccount;
 import com.automationpractice.pageObjects.testdata.TestData;
 import com.automationpractice.pageObjects.utils.TakeScreenshotWrapper;
 import com.automationpractice.pageObjects.utils.Url;
-//import org.junit.Test;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertNotEquals;
 
 /**
  * Login to an Account
@@ -22,12 +18,12 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTestCase {
 
-    MainPage mainPage = new MainPage(getDriver());
-    AccountSignInPage accountSignInPage = new AccountSignInPage(getDriver());
-    MyAccount myAccount = new MyAccount(getDriver());
-
     @Test
     public void shouldLoginToAccount() {
+        MainPage mainPage = new MainPage(driver);
+        AccountSignInPage accountSignInPage = new AccountSignInPage(driver);
+        MyAccount myAccount = new MyAccount(driver);
+
         // Given
         mainPage
                 .navigateToMainPage()
@@ -45,13 +41,16 @@ public class LoginTest extends BaseTestCase {
         myAccount
                 .getWelcomeMessage();
                 takeScreenshotLoginSuccess();
-                //assertEquals("URL = myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
-                AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
+                AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
 
     }
 
     @Test
     public void shouldFailToLoginToAccount() {
+        MainPage mainPage = new MainPage(driver);
+        AccountSignInPage accountSignInPage = new AccountSignInPage(driver);
+        MyAccount myAccount = new MyAccount(driver);
+
         // Given
         mainPage
                 .navigateToMainPage()
@@ -69,17 +68,16 @@ public class LoginTest extends BaseTestCase {
         myAccount
                 .getAuthErrorMessage();
                 takeScreenshotLoginFail();
-                //assertNotEquals("URL != myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
-                AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, getDriver().getCurrentUrl());
+                AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
 
     }
 
     private void takeScreenshotLoginSuccess() {
-        TakeScreenshotWrapper.takeScreenshot(getDriver(),"LoginSuccess.png");
+        TakeScreenshotWrapper.takeScreenshot(driver,"LoginSuccess.png");
     }
 
     private void takeScreenshotLoginFail() {
-        TakeScreenshotWrapper.takeScreenshot(getDriver(),"LoginFail.png");
+        TakeScreenshotWrapper.takeScreenshot(driver,"LoginFail.png");
     }
 
 }
