@@ -18,9 +18,11 @@ import java.util.Random;
 import static com.automationpractice.pageObjects.utils.WaitWrapper.retryWaitForElement;
 import static net.andreinc.mockneat.types.enums.PassStrengthType.MEDIUM;
 import static net.andreinc.mockneat.types.enums.StringFormatType.CAPITALIZED;
+import static net.andreinc.mockneat.types.enums.StringType.ALPHA_NUMERIC;
 import static net.andreinc.mockneat.unit.address.Cities.cities;
 import static net.andreinc.mockneat.unit.objects.Probabilities.probabilities;
 import static net.andreinc.mockneat.unit.text.Formatter.fmt;
+import static net.andreinc.mockneat.unit.text.Strings.strings;
 import static net.andreinc.mockneat.unit.text.Words.words;
 import static net.andreinc.mockneat.unit.types.Ints.ints;
 import static net.andreinc.mockneat.unit.user.Emails.emails;
@@ -116,7 +118,7 @@ public class RegisterAccountForm extends AbstractPageObject {
 
     public RegisterAccountForm setRandomEmailAddress(){
         logger.info("Generating random email address.");
-        String randomEmail = emails().supplier().get();
+        String randomEmail = strings().size(15).type(ALPHA_NUMERIC).get() + "@" + strings().size(5).type(ALPHA_NUMERIC).get() + ".com";
         logger.trace("Generated random email address: " + randomEmail);
         return setEmailAddress(randomEmail);
     }
