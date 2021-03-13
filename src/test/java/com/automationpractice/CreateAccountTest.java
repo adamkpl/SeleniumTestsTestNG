@@ -3,6 +3,7 @@ package com.automationpractice;
 import com.automationpractice.pageObjects.pages.AccountSignInPage;
 import com.automationpractice.pageObjects.pages.MainPage;
 import com.automationpractice.pageObjects.pages.MyAccount;
+import com.automationpractice.pageObjects.testdata.TestData;
 import com.automationpractice.pageObjects.utils.TakeScreenshotWrapper;
 import com.automationpractice.pageObjects.utils.Url;
 import org.testng.AssertJUnit;
@@ -98,6 +99,67 @@ public class CreateAccountTest extends BaseTestCase {
                 takeScreenshotMaximum();
                 AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
 
+    }
+
+    @Test
+    public void shouldNotRegisterAccountForAnExistingAccount() {
+        MainPage mainPage = new MainPage(driver);
+        AccountSignInPage accountSignInPage = new AccountSignInPage(driver);
+        MyAccount myAccount = new MyAccount(driver);
+
+        // Given
+        mainPage
+                .navigateToMainPage()
+                .selectSignInLink()
+                .clickSignInLink();
+
+        // When
+        accountSignInPage
+                .createAnAccount()
+                .setEmailAddress(TestData.ACCT_EMAIL)
+                .clickCreateAccountButton();
+
+        // Then
+        myAccount
+                .getAuthErrorMessage();
+                takeScreenshotCreateAccountFailAnExistingAccount();
+                AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
+
+    }
+
+
+    @Test
+    public void shouldNotRegisterAccountForAnInvalidEmailAddress() {
+        MainPage mainPage = new MainPage(driver);
+        AccountSignInPage accountSignInPage = new AccountSignInPage(driver);
+        MyAccount myAccount = new MyAccount(driver);
+
+        // Given
+        mainPage
+                .navigateToMainPage()
+                .selectSignInLink()
+                .clickSignInLink();
+
+        // When
+        accountSignInPage
+                .createAnAccount()
+                .setEmailAddress(TestData.ACCT_EMAIL_INVALID)
+                .clickCreateAccountButton();
+
+        // Then
+        myAccount
+                .getAuthErrorMessage();
+                takeScreenshotCreateAccountFailInvalidEmailAddress();
+                AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
+
+    }
+
+    private void takeScreenshotCreateAccountFailInvalidEmailAddress() {
+        TakeScreenshotWrapper.takeScreenshot(driver,"CreateAccountFailInvalidEmailAddress.png");
+    }
+
+    private void takeScreenshotCreateAccountFailAnExistingAccount() {
+        TakeScreenshotWrapper.takeScreenshot(driver,"CreateAccountFailAnExistingAccount.png");
     }
 
     private void takeScreenshotMinimum() {
