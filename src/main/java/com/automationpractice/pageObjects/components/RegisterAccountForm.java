@@ -118,7 +118,8 @@ public class RegisterAccountForm extends AbstractPageObject {
 
     public RegisterAccountForm setRandomEmailAddress(){
         logger.info("Generating random email address.");
-        String randomEmail = strings().size(15).type(ALPHA_NUMERIC).get() + "@" + strings().size(5).type(ALPHA_NUMERIC).get() + ".com";
+        String randomEmail = strings().size(15).type(ALPHA_NUMERIC).get().toLowerCase() + "@"
+                + strings().size(5).type(ALPHA_NUMERIC).get().toLowerCase() + new Random().nextInt(99999) + ".pl";
         logger.trace("Generated random email address: " + randomEmail);
         return setEmailAddress(randomEmail);
     }
