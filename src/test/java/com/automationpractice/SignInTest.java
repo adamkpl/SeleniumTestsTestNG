@@ -5,18 +5,11 @@ import com.automationpractice.pageObjects.pages.MainPage;
 import com.automationpractice.pageObjects.pages.MyAccount;
 import com.automationpractice.pageObjects.testdata.TestData;
 import com.automationpractice.pageObjects.utils.TakeScreenshotWrapper;
-import com.automationpractice.pageObjects.utils.Url;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-/**
- * Login to an Account
- * Page Object Pattern with "Fluent API"
- * @since 2020-02-18
- * @author Adam K.
- */
+import static org.testng.Assert.assertTrue;
 
-public class LoginTest extends BaseTestCase {
+public class SignInTest extends BaseTestCase {
 
     @Test
     public void shouldLoginToAccount() {
@@ -38,11 +31,8 @@ public class LoginTest extends BaseTestCase {
                 .clickSignInButton();
 
         // Then
-        myAccount
-                .getWelcomeMessage();
-                TakeScreenshotWrapper.takeScreenshot(driver, "LoginSuccess.png");
-                AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
-
+        TakeScreenshotWrapper.takeScreenshot(driver, "shouldLoginToAccount.png");
+        assertTrue(myAccount.isWelcomeMessageDisplayed());
     }
 
     @Test
@@ -65,10 +55,8 @@ public class LoginTest extends BaseTestCase {
                 .clickSignInButton();
 
         // Then
-        myAccount
-                .getAuthErrorMessage();
-                TakeScreenshotWrapper.takeScreenshot(driver, "LoginFailInvalidPwd.png");
-                AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
+        TakeScreenshotWrapper.takeScreenshot(driver, "shouldFailToLoginToAnExistingAccountWithInvalidPassword.png");
+        assertTrue(myAccount.isAuthorizationErrorMessageDisplayed());
     }
 
 }

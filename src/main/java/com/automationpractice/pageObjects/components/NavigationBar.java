@@ -16,13 +16,13 @@ public class NavigationBar extends AbstractPageObject {
     @FindBy(css = ".header_user_info > a")
     private WebElement username;
 
-    public NavigationBar(WebDriver driver){
+    public NavigationBar(WebDriver driver) {
         super(driver);
     }
 
     Logger logger = Logger.getLogger(NavigationBar.class);
 
-    public AccountSignInPage clickSignInLink(){
+    public AccountSignInPage clickSignInLink() {
         WaitWrapper.waitForElement(driver, signInLink);
         logger.info("Clicking " + signInLink);
         signInLink.click();

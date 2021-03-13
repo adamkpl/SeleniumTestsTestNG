@@ -22,7 +22,7 @@ public class LoginToAccountForm extends AbstractPageObject {
 
     Logger logger = Logger.getLogger(LoginToAccountForm.class);
 
-    public LoginToAccountForm withUsername(String username){
+    public LoginToAccountForm withUsername(String username) {
         WaitWrapper.waitForElement(driver, loginField);
         logger.info("Typing username: " + username);
         loginField.sendKeys(username);
@@ -30,7 +30,7 @@ public class LoginToAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public LoginToAccountForm withPassword(String password){
+    public LoginToAccountForm withPassword(String password) {
         WaitWrapper.waitForElement(driver, passwordField);
         logger.warn("DEMO-only purposes. In real-life scenario plain-text password logging is NOT acceptable.");
         logger.info("Typing password: " + password);
@@ -39,7 +39,7 @@ public class LoginToAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public LoginToAccountForm clickSignInButton(){
+    public LoginToAccountForm clickSignInButton() {
         WaitWrapper.waitForElement(driver, signInButton);
         logger.info("Clicking " + signInButton);
         signInButton.click();

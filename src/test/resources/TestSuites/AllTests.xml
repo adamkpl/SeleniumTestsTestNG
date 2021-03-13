@@ -4,7 +4,7 @@
 
     <test name="AllTests">
         <classes>
-            <class name="com.automationpractice.LoginTest" />
+            <class name="com.automationpractice.SignInTest" />
             <class name="com.automationpractice.CreateAccountTest" />
         </classes>
     </test>

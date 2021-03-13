@@ -95,13 +95,13 @@ public class RegisterAccountForm extends AbstractPageObject {
     @FindBy(id = "create_account_error")
     private WebElement createAccountError;
 
-    public RegisterAccountForm(WebDriver driver){
+    public RegisterAccountForm(WebDriver driver) {
         super(driver);
     }
 
     Logger logger = Logger.getLogger(RegisterAccountForm.class);
 
-    public RegisterAccountForm setEmailAddress(String emailAddress){
+    public RegisterAccountForm setEmailAddress(String emailAddress) {
         WaitWrapper.waitForElement(driver, emailAddressField);
         logger.info("Checking if " + emailAddressField + " is enabled.");
         emailAddressField.isEnabled();
@@ -116,7 +116,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomEmailAddress(){
+    public RegisterAccountForm setRandomEmailAddress() {
         logger.info("Generating random email address.");
         String randomEmail = strings().size(15).type(ALPHA_NUMERIC).get().toLowerCase() + "@"
                 + strings().size(5).type(ALPHA_NUMERIC).get().toLowerCase() + new Random().nextInt(99999) + ".pl";
@@ -124,7 +124,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return setEmailAddress(randomEmail);
     }
 
-    public RegisterAccountForm clickCreateAccountButton(){
+    public RegisterAccountForm clickCreateAccountButton() {
         WaitWrapper.waitForElement(driver, createAccountButton);
         logger.info("Checking if " + createAccountButton + " is enabled.");
         createAccountButton.isEnabled();
@@ -136,9 +136,9 @@ public class RegisterAccountForm extends AbstractPageObject {
     }
 
     /* Gender radio buttons make the test flaky due to the fact that they load with a delay.
-    * In order to address this issue a workaround has been implemented with retryWaitForElement(). */
+     * In order to address this issue a workaround has been implemented with retryWaitForElement(). */
 
-    public RegisterAccountForm setGenderMale(){
+    public RegisterAccountForm setGenderMale() {
         if (retryWaitForElement(driver, By.id("id_gender1"), 2, 1)) {
             logger.info("Clicking " + genderMale);
             genderMale.click();
@@ -151,7 +151,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setGenderFemale(){
+    public RegisterAccountForm setGenderFemale() {
         if (retryWaitForElement(driver, By.id("id_gender2"), 2, 1)) {
             logger.info("Clicking " + genderFemale);
             genderFemale.click();
@@ -164,8 +164,8 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomGender(){
-        if ((new Random().nextInt(new WebElement[] {genderMale, genderFemale}.length) == 0)) {
+    public RegisterAccountForm setRandomGender() {
+        if ((new Random().nextInt(new WebElement[]{genderMale, genderFemale}.length) == 0)) {
             setGenderMale();
         } else {
             setGenderFemale();
@@ -173,7 +173,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setFirstName(String aFirstName){
+    public RegisterAccountForm setFirstName(String aFirstName) {
         WaitWrapper.waitForElement(driver, firstName);
         logger.info("Checking if " + firstName + " is enabled.");
         firstName.isEnabled();
@@ -188,7 +188,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setLastName(String aLastName){
+    public RegisterAccountForm setLastName(String aLastName) {
         WaitWrapper.waitForElement(driver, lastName);
         logger.info("Checking if " + lastName + " is enabled.");
         lastName.isEnabled();
@@ -203,11 +203,11 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomFirstName(){
+    public RegisterAccountForm setRandomFirstName() {
         /* Could be aligned with results of setRandomGender().
         Male (0) or Female (1). */
         String aFirstName;
-        if ((new Random().nextInt(new WebElement[] {genderMale, genderFemale}.length) == 0)) {
+        if ((new Random().nextInt(new WebElement[]{genderMale, genderFemale}.length) == 0)) {
             logger.info("Generating random first male name.");
             aFirstName = names().firstAndMale().get();
             logger.info("Generated random first male name: " + aFirstName);
@@ -219,7 +219,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return setFirstName(aFirstName);
     }
 
-    public RegisterAccountForm setRandomLastName(){
+    public RegisterAccountForm setRandomLastName() {
         /* Could be aligned it with the results of setRandomGender() & setRandomFirstName() ONLY if name
         inflexion is applied. E.g in Polish language the last name would not be Kowalski but Kowalska. */
         logger.info("Generating last name.");
@@ -228,7 +228,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return setLastName(lastName);
     }
 
-    public RegisterAccountForm setPassword(String aPassword){
+    public RegisterAccountForm setPassword(String aPassword) {
         WaitWrapper.waitForElement(driver, password);
         logger.info("Checking if " + password + " is enabled.");
         password.isEnabled();
@@ -244,14 +244,14 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomPassword(){
+    public RegisterAccountForm setRandomPassword() {
         logger.info("Generating random password.");
         String randomPassword = passwords().type(MEDIUM).get();
         logger.trace("Generated random password: " + randomPassword);
         return setPassword(randomPassword);
     }
 
-    public RegisterAccountForm checkNewsletter(){
+    public RegisterAccountForm checkNewsletter() {
         WaitWrapper.waitForElement(driver, newsletter);
         logger.info("Checking if " + newsletter + " is enabled.");
         newsletter.isEnabled();
@@ -269,7 +269,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm checkSpecialOffers(){
+    public RegisterAccountForm checkSpecialOffers() {
         WaitWrapper.waitForElement(driver, newsletterSpecialOffers);
         logger.info("Checking if " + newsletterSpecialOffers + " is enabled.");
         newsletterSpecialOffers.isEnabled();
@@ -314,14 +314,14 @@ public class RegisterAccountForm extends AbstractPageObject {
         logger.info("Calculated size of a dropdown list of day of birth: " + dayOfBirthListSize);
         logger.info("Generating random day of birth.");
         int randDay = new Random().nextInt(dayOfBirthListSize);
-        if(randDay == 0) {
+        if (randDay == 0) {
             randDay++;
         }
         logger.trace("Generated random day of birth: " + randDay);
         return selectDayOfBirth(randDay);
     }
 
-    public RegisterAccountForm selectMonthOfBirth(int monthOfBirth){
+    public RegisterAccountForm selectMonthOfBirth(int monthOfBirth) {
         WaitWrapper.waitFluentlyForElement(driver, months);
         dobMonth = new Select(driver.findElement(months));
         logger.info("Found a dropdown list element: " + months);
@@ -341,20 +341,20 @@ public class RegisterAccountForm extends AbstractPageObject {
         }
     }
 
-    public RegisterAccountForm selectRandomMonthOfBirth(){
+    public RegisterAccountForm selectRandomMonthOfBirth() {
         logger.info("Calculating size of a dropdown list of day of month");
         int monthOfBirthListSize = driver.findElements(dobMonthList).size();
         logger.info("Calculated size of a dropdown list of month of birth: " + monthOfBirthListSize);
         logger.info("Generating random month of birth.");
         int randMonth = new Random().nextInt(monthOfBirthListSize);
-        if(randMonth == 0) {
+        if (randMonth == 0) {
             randMonth++;
         }
         logger.trace("Generated random month of birth: " + randMonth);
         return selectMonthOfBirth(randMonth);
     }
 
-    public RegisterAccountForm selectYearOfBirth(int yearOfBirth){
+    public RegisterAccountForm selectYearOfBirth(int yearOfBirth) {
         WaitWrapper.waitFluentlyForElement(driver, years);
         dobYear = new Select(driver.findElement(years));
         logger.info("Found a dropdown list element: " + years);
@@ -375,20 +375,20 @@ public class RegisterAccountForm extends AbstractPageObject {
         }
     }
 
-    public RegisterAccountForm selectRandomYearOfBirth(){
+    public RegisterAccountForm selectRandomYearOfBirth() {
         logger.info("Calculating size of a dropdown list of year of birth");
         int yearOfBirthListSize = driver.findElements(dobYearList).size();
         logger.info("Calculated size of a dropdown list of year of birth: " + yearOfBirthListSize);
         logger.info("Generating random year of birth.");
         int randYear = new Random().nextInt(yearOfBirthListSize);
-        if(randYear == 0) {
+        if (randYear == 0) {
             randYear++;
         }
         logger.trace("Generated random year of birth: " + randYear);
         return selectYearOfBirth(randYear);
     }
 
-    public RegisterAccountForm setAdditionalInformation(String additionalInfo){
+    public RegisterAccountForm setAdditionalInformation(String additionalInfo) {
         WaitWrapper.waitForElement(driver, additionalInformationForm);
         logger.info("Checking if " + additionalInformationForm + " is enabled.");
         additionalInformationForm.isEnabled();
@@ -403,14 +403,14 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomAdditionalInformation(){
+    public RegisterAccountForm setRandomAdditionalInformation() {
         logger.info("Generating random additional information.");
         String randomAdditionalInformation = words().nouns().get();
         logger.trace("Generated random additional information: " + randomAdditionalInformation);
         return setAdditionalInformation(randomAdditionalInformation);
     }
 
-    public RegisterAccountForm setAddress(String aAddress){
+    public RegisterAccountForm setAddress(String aAddress) {
         WaitWrapper.waitForElement(driver, address);
         logger.info("Checking if " + address + " is enabled.");
         address.isEnabled();
@@ -425,7 +425,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomAddress(){
+    public RegisterAccountForm setRandomAddress() {
         logger.info("Generating random address.");
         MockUnitString randomAddress = fmt("#{adj}#{noun} #{suffix} #{nr}")
                 .param("adj", probabilities(String.class)
@@ -449,7 +449,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return setAddress(randomFinalAddress);
     }
 
-    public RegisterAccountForm setCompany(String aCompany){
+    public RegisterAccountForm setCompany(String aCompany) {
         WaitWrapper.waitForElement(driver, company);
         logger.info("Checking if " + company + " is enabled.");
         company.isEnabled();
@@ -464,14 +464,14 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomCompany(){
+    public RegisterAccountForm setRandomCompany() {
         logger.info("Generating company name.");
         String company = words().nouns().get();
         logger.info("Generated company name: " + company);
         return setCompany(company);
     }
 
-    public RegisterAccountForm setCity(String aCity){
+    public RegisterAccountForm setCity(String aCity) {
         WaitWrapper.waitForElement(driver, city);
         logger.info("Checking if " + city + " is enabled.");
         city.isEnabled();
@@ -486,21 +486,21 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomCity(){
+    public RegisterAccountForm setRandomCity() {
         logger.info("Generating random city.");
         String randomCity = cities().capitals().get();
         logger.trace("Generated random city: " + randomCity);
         return setCity(randomCity);
     }
 
-    public RegisterAccountForm selectState(int aState){
+    public RegisterAccountForm selectState(int aState) {
         WaitWrapper.waitFluentlyForElement(driver, state);
         stateSelect = new Select(driver.findElement(state));
         logger.info("Found a dropdown list element: " + state);
         logger.info("Looking for a dropdown list & create a List<WebElement>: " + stateList);
         List<WebElement> selectState = driver.findElements(stateList);
         logger.info("Found for a dropdown list & created a List<WebElement>");
-        if(selectState.size() > 0) {
+        if (selectState.size() > 0) {
             logger.info("Selecting state from a dropdown list: " + aState);
             stateSelect.selectByIndex(aState);
             logger.info("Selected state (position on list): " + aState + ", value = "
@@ -514,20 +514,20 @@ public class RegisterAccountForm extends AbstractPageObject {
         }
     }
 
-    public RegisterAccountForm selectRandomState(){
+    public RegisterAccountForm selectRandomState() {
         logger.info("Calculating size of a dropdown list of states");
         int statesListSize = driver.findElements(stateList).size();
         logger.info("Calculated size of a dropdown list of states: " + statesListSize);
         logger.info("Generating random state.");
         int randState = new Random().nextInt(statesListSize);
-        if(randState == 0) {
+        if (randState == 0) {
             randState++;
         }
         logger.trace("Generated random month of birth: " + randState);
         return selectState(randState);
     }
 
-    public RegisterAccountForm setPostcode(String aPostcode){
+    public RegisterAccountForm setPostcode(String aPostcode) {
         /* In real life the post codes contain alphanumeric characters, but here
         the form accepts only 5-digit format value e.g 00000. */
         WaitWrapper.waitForElement(driver, postcode);
@@ -544,23 +544,23 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomPostcode(){
+    public RegisterAccountForm setRandomPostcode() {
         logger.info("Generating random postcode.");
-        String randomPostcode = ints().range(10000,99999).get().toString();
+        String randomPostcode = ints().range(10000, 99999).get().toString();
         logger.trace("Generated random postcode: " + randomPostcode);
         return setPostcode(randomPostcode);
     }
 
-    public RegisterAccountForm selectCountry(int aCountry){
+    public RegisterAccountForm selectCountry(int aCountry) {
         /* The United States value is automatically selected by default, and is the only option available. With the
-        * current implementation, this method will still work when the list expands in the future. */
+         * current implementation, this method will still work when the list expands in the future. */
         WaitWrapper.waitFluentlyForElement(driver, country);
         countrySelect = new Select(driver.findElement(country));
         logger.info("Found a dropdown list element: " + country);
         logger.info("Looking for a dropdown list & create a List<WebElement>: " + countryList);
         List<WebElement> selectCountry = driver.findElements(countryList);
         logger.info("Found for a dropdown list & created a List<WebElement>");
-        if(selectCountry.size() > 0) {
+        if (selectCountry.size() > 0) {
             logger.info("Selecting country from a dropdown list: " + aCountry);
             countrySelect.selectByIndex(aCountry);
             logger.info("Selected country (position on list): " + aCountry + ", value = "
@@ -574,7 +574,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         }
     }
 
-    public RegisterAccountForm selectRandomCountry(){
+    public RegisterAccountForm selectRandomCountry() {
         /* The United States value is automatically selected by default, and is the only option available. With the
          * current implementation, this method will still work when the list expands in the future. */
         logger.info("Calculating size of a dropdown list of countries");
@@ -582,14 +582,14 @@ public class RegisterAccountForm extends AbstractPageObject {
         logger.info("Calculated size of a dropdown list of countries: " + countryListSize);
         logger.info("Generating random country.");
         int randCountry = new Random().nextInt(countryListSize);
-        if(randCountry == 0) {
+        if (randCountry == 0) {
             randCountry++;
         }
         logger.trace("Generated random country: " + randCountry);
         return selectCountry(randCountry);
     }
 
-    public RegisterAccountForm setPhoneNumber(String aPhoneHome){
+    public RegisterAccountForm setPhoneNumber(String aPhoneHome) {
         /* On many websites, phone numbers are Typed: with non-integer characters such as + or - with
         additional prefix numbers, but here we simply generate a 9-digit number. */
         WaitWrapper.waitForElement(driver, phoneHome);
@@ -606,16 +606,16 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomPhoneNumber(){
+    public RegisterAccountForm setRandomPhoneNumber() {
         /* On many websites, phone numbers are Typed: with non-integer characters such as + or - with
         additional prefix numbers, but here we simply generate a 9-digit number. */
         logger.info("Generating random phone number.");
-        String randomPhoneNumber = ints().range(100000000,999999999).get().toString();
+        String randomPhoneNumber = ints().range(100000000, 999999999).get().toString();
         logger.trace("Generated random phone number: " + randomPhoneNumber);
         return setPhoneNumber(randomPhoneNumber);
     }
 
-    public RegisterAccountForm setMobilePhoneNumber(String mobilePhoneNumber){
+    public RegisterAccountForm setMobilePhoneNumber(String mobilePhoneNumber) {
         /* On many websites, phone numbers are Typed: with non-integer characters such as + or - with
         additional prefix numbers, but here we simply generate a 9-digit number. */
         WaitWrapper.waitForElement(driver, phoneMobile);
@@ -632,16 +632,16 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomMobilePhoneNumber(){
+    public RegisterAccountForm setRandomMobilePhoneNumber() {
         /* On many websites, phone numbers are Typed: with non-integer characters such as + or - with
         additional prefix numbers, but here we simply generate a 9-digit number. */
         logger.info("Generating random mobile phone number.");
-        String randomMobilePhoneNumber = ints().range(100000000,999999999).get().toString();
+        String randomMobilePhoneNumber = ints().range(100000000, 999999999).get().toString();
         logger.trace("Generated random mobile phone number: " + randomMobilePhoneNumber);
         return setMobilePhoneNumber(randomMobilePhoneNumber);
     }
 
-    public RegisterAccountForm setAddressAlias(String aAddressAlias){
+    public RegisterAccountForm setAddressAlias(String aAddressAlias) {
         WaitWrapper.waitForElement(driver, addressAlias);
         logger.info("Checking if " + addressAlias + " is enabled.");
         addressAlias.isEnabled();
@@ -655,14 +655,14 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public RegisterAccountForm setRandomAddressAlias(){
+    public RegisterAccountForm setRandomAddressAlias() {
         logger.info("Generating random address alias.");
         String randomAddressAlias = words().nouns().get();
         logger.trace("Generated random address alias: " + randomAddressAlias);
         return setAddressAlias(randomAddressAlias);
     }
 
-    public RegisterAccountForm clickRegisterButton(){
+    public RegisterAccountForm clickRegisterButton() {
         WaitWrapper.waitForElement(driver, registerButton);
         logger.info("Checking if " + registerButton + " is enabled.");
         registerButton.isEnabled();
@@ -673,7 +673,7 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public AccountSignInPage registerAccount(){
+    public AccountSignInPage registerAccount() {
         return new AccountSignInPage(driver);
     }
 }

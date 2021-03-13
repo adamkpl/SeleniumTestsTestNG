@@ -20,18 +20,22 @@ public class MyAccount extends AbstractPageObject {
 
     Logger logger = Logger.getLogger(MyAccount.class);
 
-    public WebElement getWelcomeMessage(){
+    public Boolean isWelcomeMessageDisplayed() {
         WaitWrapper.waitForElement(driver, welcomeMessage);
         logger.info("My Account welcome page opened.");
-        //System.out.println("Success! Welcome to your account :-)");
-        return welcomeMessage;
+        //System.out.println("Login successful.");
+        return welcomeMessage.isDisplayed();
     }
 
-    public WebElement getAuthErrorMessage(){
+    public Boolean isAuthorizationErrorMessageDisplayed() {
         WaitWrapper.waitForElement(driver, authErrorMessage);
         logger.warn("Error! Authentication failed.");
-        //System.out.println("Error! Authentication failed :-(");
-        return authErrorMessage;
+        //System.out.println("Login failed.");
+        return authErrorMessage.isDisplayed();
     }
 
+    public String getMyAccountUrl() {
+        logger.trace("Retrieving current URL: " + driver.getCurrentUrl());
+        return driver.getCurrentUrl();
+    }
 }
