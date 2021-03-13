@@ -1,5 +1,6 @@
 # Test Outputs
 testOutputs
+log4j_log.out
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij,java
