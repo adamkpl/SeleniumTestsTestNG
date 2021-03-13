@@ -41,7 +41,7 @@ public class CreateAccountTest extends BaseTestCase {
                     .clickRegisterButton();
 
         // Then
-        TakeScreenshotWrapper.takeScreenshot(driver, "RegisterAccountMinimum_Success.png");
+        //TakeScreenshotWrapper.takeScreenshot(driver, "RegisterAccountMinimum_Success.png");
         assertTrue(myAccount.isWelcomeMessageDisplayed());
     }
 
@@ -84,7 +84,7 @@ public class CreateAccountTest extends BaseTestCase {
                     .clickRegisterButton();
 
         // Then
-        TakeScreenshotWrapper.takeScreenshot(driver, "shouldRegisterAccountWithAllFieldsFilledWithValidInputData.png");
+        //TakeScreenshotWrapper.takeScreenshot(driver, "shouldRegisterAccountWithAllFieldsFilledWithValidInputData.png");
         assertTrue(myAccount.isWelcomeMessageDisplayed());
     }
 
@@ -107,7 +107,7 @@ public class CreateAccountTest extends BaseTestCase {
                 .clickCreateAccountButton();
 
         // Then
-        TakeScreenshotWrapper.takeScreenshot(driver, "shouldNotRegisterAccountForAnExistingAccount.png");
+        //TakeScreenshotWrapper.takeScreenshot(driver, "shouldNotRegisterAccountForAnExistingAccount.png");
         assertTrue(myAccount.isAuthorizationErrorMessageDisplayed());
     }
 
@@ -130,7 +130,7 @@ public class CreateAccountTest extends BaseTestCase {
                 .clickCreateAccountButton();
 
         // Then
-        TakeScreenshotWrapper.takeScreenshot(driver, "shouldNotRegisterAccountForAnInvalidEmailAddress.png");
+        //TakeScreenshotWrapper.takeScreenshot(driver, "shouldNotRegisterAccountForAnInvalidEmailAddress.png");
         assertTrue(myAccount.isAuthorizationErrorMessageDisplayed());
     }
 

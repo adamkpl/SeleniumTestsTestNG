@@ -31,7 +31,7 @@ public class SignInTest extends BaseTestCase {
                 .clickSignInButton();
 
         // Then
-        TakeScreenshotWrapper.takeScreenshot(driver, "shouldLoginToAccount.png");
+        //TakeScreenshotWrapper.takeScreenshot(driver, "shouldLoginToAccount.png");
         assertTrue(myAccount.isWelcomeMessageDisplayed());
     }
 
@@ -55,7 +55,7 @@ public class SignInTest extends BaseTestCase {
                 .clickSignInButton();
 
         // Then
-        TakeScreenshotWrapper.takeScreenshot(driver, "shouldFailToLoginToAnExistingAccountWithInvalidPassword.png");
+        //TakeScreenshotWrapper.takeScreenshot(driver, "shouldFailToLoginToAnExistingAccountWithInvalidPassword.png");
         assertTrue(myAccount.isAuthorizationErrorMessageDisplayed());
     }
 
