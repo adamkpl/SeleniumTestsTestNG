@@ -50,9 +50,8 @@ public class CreateAccountTest extends BaseTestCase {
         // Then
         myAccount
                 .getWelcomeMessage();
-                takeScreenshotMinimum();
+                TakeScreenshotWrapper.takeScreenshot(driver, "RegisterAccountMinimum_Success.png");
                 AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
-
     }
 
     @Test
@@ -96,9 +95,8 @@ public class CreateAccountTest extends BaseTestCase {
         // Then
         myAccount
                 .getWelcomeMessage();
-                takeScreenshotMaximum();
+                TakeScreenshotWrapper.takeScreenshot(driver, "RegisterAccountMaximum_Success.png");
                 AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
-
     }
 
     @Test
@@ -122,9 +120,8 @@ public class CreateAccountTest extends BaseTestCase {
         // Then
         myAccount
                 .getAuthErrorMessage();
-                takeScreenshotCreateAccountFailAnExistingAccount();
+                TakeScreenshotWrapper.takeScreenshot(driver, "CreateAccountFailAnExistingAccount.png");
                 AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
-
     }
 
 
@@ -149,25 +146,8 @@ public class CreateAccountTest extends BaseTestCase {
         // Then
         myAccount
                 .getAuthErrorMessage();
-                takeScreenshotCreateAccountFailInvalidEmailAddress();
+                TakeScreenshotWrapper.takeScreenshot(driver, "CreateAccountFailInvalidEmailAddress.png");
                 AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
-
-    }
-
-    private void takeScreenshotCreateAccountFailInvalidEmailAddress() {
-        TakeScreenshotWrapper.takeScreenshot(driver,"CreateAccountFailInvalidEmailAddress.png");
-    }
-
-    private void takeScreenshotCreateAccountFailAnExistingAccount() {
-        TakeScreenshotWrapper.takeScreenshot(driver,"CreateAccountFailAnExistingAccount.png");
-    }
-
-    private void takeScreenshotMinimum() {
-        TakeScreenshotWrapper.takeScreenshot(driver,"RegisterAccountMinimum_Success.png");
-    }
-
-    private void takeScreenshotMaximum() {
-        TakeScreenshotWrapper.takeScreenshot(driver,"RegisterAccountMaximum_Success.png");
     }
 
 }

@@ -40,13 +40,13 @@ public class LoginTest extends BaseTestCase {
         // Then
         myAccount
                 .getWelcomeMessage();
-                takeScreenshotLoginSuccess();
+                TakeScreenshotWrapper.takeScreenshot(driver, "LoginSuccess.png");
                 AssertJUnit.assertEquals("URL = myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
 
     }
 
     @Test
-    public void shouldFailToLoginToAccount() {
+    public void shouldFailToLoginToAnExistingAccountWithInvalidPassword() {
         MainPage mainPage = new MainPage(driver);
         AccountSignInPage accountSignInPage = new AccountSignInPage(driver);
         MyAccount myAccount = new MyAccount(driver);
@@ -67,17 +67,8 @@ public class LoginTest extends BaseTestCase {
         // Then
         myAccount
                 .getAuthErrorMessage();
-                takeScreenshotLoginFail();
+                TakeScreenshotWrapper.takeScreenshot(driver, "LoginFailInvalidPwd.png");
                 AssertJUnit.assertNotSame("URL != myAccount", Url.MY_ACCOUNT, driver.getCurrentUrl());
-
-    }
-
-    private void takeScreenshotLoginSuccess() {
-        TakeScreenshotWrapper.takeScreenshot(driver,"LoginSuccess.png");
-    }
-
-    private void takeScreenshotLoginFail() {
-        TakeScreenshotWrapper.takeScreenshot(driver,"LoginFail.png");
     }
 
 }
