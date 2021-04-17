@@ -2,10 +2,11 @@
 
 <suite name="AllTests" parallel="classes" thread-count="2" verbose="1">
 
-    <test name="AllTests">
+    <test name="AllTests-Firefox">
         <classes>
             <class name="com.automationpractice.SignInTest" />
             <class name="com.automationpractice.CreateAccountTest" />
+            <parameter name="browser" value="firefox"></parameter>
         </classes>
     </test>
 

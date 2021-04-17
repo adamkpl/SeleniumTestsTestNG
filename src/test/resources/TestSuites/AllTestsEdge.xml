@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="AllTests" parallel="classes" thread-count="2" verbose="1">
+
+    <test name="AllTests-Edge">
+        <classes>
+            <class name="com.automationpractice.SignInTest" />
+            <class name="com.automationpractice.CreateAccountTest" />
+            <parameter name="browser" value="edge"></parameter>
+        </classes>
+    </test>
+
+</suite>
