@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="AllTests" parallel="classes" thread-count="2" verbose="1">
+
+    <test name="AllTests-Chrome">
+        <classes>
+            <class name="com.automationpractice.SignInPositiveTest" />
+            <class name="com.automationpractice.SignInNegativeTest" />
+            <class name="com.automationpractice.CreateAccountPositiveTest" />
+            <class name="com.automationpractice.CreateAccountNegativeTest" />
+            <parameter name="browser" value="chrome"></parameter>
+        </classes>
+    </test>
+
+</suite>
