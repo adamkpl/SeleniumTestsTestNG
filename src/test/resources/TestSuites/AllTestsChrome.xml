@@ -4,8 +4,10 @@
 
     <test name="AllTests-Chrome">
         <classes>
-            <class name="com.automationpractice.SignInTest" />
-            <class name="com.automationpractice.CreateAccountTest" />
+            <class name="com.automationpractice.SignInPositiveTest" />
+            <class name="com.automationpractice.SignInNegativeTest" />
+            <class name="com.automationpractice.CreateAccountPositiveTest" />
+            <class name="com.automationpractice.CreateAccountNegativeTest" />
             <parameter name="browser" value="chrome"></parameter>
         </classes>
     </test>
