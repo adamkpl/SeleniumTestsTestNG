@@ -673,7 +673,4 @@ public class RegisterAccountForm extends AbstractPageObject {
         return this;
     }
 
-    public AccountSignInPage registerAccount() {
-        return new AccountSignInPage(driver);
-    }
 }
