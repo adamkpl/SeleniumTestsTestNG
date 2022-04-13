@@ -6,7 +6,7 @@ Run:
 
 `mvn clean test` or
 `mvn clean package` via CLI or
-execute `AllTests.xml`
+execute `AllTests*.xml`
 
 URL
 [E-commerce automationpractice.com](http://automationpractice.com/)
